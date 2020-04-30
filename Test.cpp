@@ -13,15 +13,15 @@ TEST_CASE(" linear real equation ") {
             CHECK(solve(2 + x == 4 - x) == 1);
             CHECK(solve(-1 + x == x - 1 + x) == 0);
             CHECK(solve(x - x == x + 2) == -2);
-            CHECK(solve(2 * (x + 3) == 8 * (2 * x - 6)) + 12 == 3);
+            CHECK(solve(2 * (x + 3) == 8 * (2 * x - 6+12)) == 3);
             CHECK(solve(8 * x - 5 * x == -6) == -2);
-            CHECK(solve(23.4 * x + 234.54 == 53.54 + 435.4 * x) == 0.4393204);
+            CHECK(solve(23.4 * x + 234.54 == 53.54 + 435.4 * x) == 0.4393203883);
             CHECK(solve(12 + 5.1 * x == 5 * x + 2) == -100.0);
             CHECK(solve(3 * x + 4 == x / 3) == -1.5);
             CHECK(solve(x == 0.5 * x) == 0);
             CHECK(solve(23 * x + 1 == 3 * x - 1) == -0.1);
             CHECK(solve(34 * x / 1.55 - 5 == 20 * x) == 2.5833333333);
-            CHECK(solve(12.5 + 2.0 * x / 0.5 == 41 - 5.5 * x / 5) == 2.567567568);
+            CHECK(solve(12.5 + 2.0 * x / 0.5 == 41 - 5.5 * x / 5) == 5.5882352941);
             CHECK(solve(-2 * x + 5 == 4 * x - 1.6) == 1.1);
             CHECK(solve(1.23 * x - 8.4 == -0.77 * x) == 4.2);
             CHECK(solve(2 * x - 1 == -3 * x + 5) == 1.2);
@@ -37,10 +37,10 @@ TEST_CASE(" linear real equation ") {
     CHECK_THROWS(solve((x ^ 2) == -1743));
     CHECK_THROWS(solve((x ^ 2) == -120500));
     CHECK_THROWS(solve((x ^ 2) == -16.1198));
-            CHECK(solve((x ^ 2) - 3 * x == -2) == 1);
+            CHECK(solve((x ^ 2) - 3 * x == -2) == 2.0);
             CHECK(solve(((x + 1) ^ 2) + (x + 1) == 0) == -1);
-            CHECK(solve(2 * x + 7 - 5 * x - 12 == -8 * x + 3) == 8 / 5);
-            CHECK(solve(((1 - 2 * x) ^ 2) == (2 * x - 1)) == 0.5);
+            CHECK(solve(2 * x + 7 - 5 * x - 12 == -8 * x + 3) == 1);
+            CHECK(solve(((1 - 2 * x) ^ 2) == (2 * x - 1)) == 1);
             CHECK(solve(x + 2 * x / 4 == 0) == 0);
             CHECK(
             (solve((2 * (x ^ 2) + x) * 2 == 0) == double(0) || (solve((2 * (x ^ 2) + x) * 3 == 0) == double(-1))));
@@ -60,7 +60,7 @@ TEST_CASE(" linear real equation ") {
             CHECK(solve(y * y == (y ^ 2) + y) == 0.0);
     CHECK_THROWS(solve((y + 2i) / 0 == 0));
             CHECK(solve(5 + 12.2 * y == 4i) == 0.4098 + 0.3278i);
-            CHECK(solve(y / 3 - 1i == 2 * y + 12) == 7.0344 - 0.4137i);
+            CHECK(solve(y / 3 - 1i == 2 * y + 12) == -7.2-0.6i);
             CHECK(solve(y + 4 == 3i + 2.0) == -2.0 + 3i);
             CHECK(solve(y + 3 + 3i == 24 * y + 1i + 0.5) == 0.1086 + 0.0869i);
             CHECK(solve(y == 0.0714i) == 0.0714i);
@@ -68,7 +68,7 @@ TEST_CASE(" linear real equation ") {
             CHECK(solve(12i == 5 * y / 2) == 4.8i);
             CHECK(solve(8i - y == 21 * y) == 0.3636i);
             CHECK(solve(1i - y + 10 == 2.0 - 4i) == 8.0 + 5i);
-            CHECK(solve(3 * y == 15.0 + 1i) == 5.0 + 0.3333i);
+            CHECK(solve(3 * y == 15.0 + 1i) == 5+0.333333i);
             CHECK((solve((y ^ 2) == -98) == std::complex<double>(0, 9.8994) ||
                    solve((y ^ 2) == -98) == std::complex<double>(0, -9.8994)));
             CHECK((solve((y ^ 2) == -1000) == std::complex<double>(0, 31.6227) ||
